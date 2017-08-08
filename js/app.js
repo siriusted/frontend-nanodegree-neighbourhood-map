@@ -50,7 +50,7 @@ function kickOff(){
 		map.panTo(self.getPosition());
 		self.setAnimation(google.maps.Animation.BOUNCE);
 		window.setTimeout(function() {
-			self.setAnimation(null)
+			self.setAnimation(null);
 		}, 1500);
 
 		populateInfoWindow(self);
@@ -60,8 +60,7 @@ function kickOff(){
 	var populateInfoWindow = function(marker) {
 		
 		var content = '<h5>' + marker.title + '</h5><p>data</p><p>Attribution: Wikipedia</p>',
-		url = 'https://en.wikipedia.org/w/api.php?format=json&action=query&origin=*&prop=extracts&explaintext&exsentences=1&titles='
-					 + encodeURIComponent(marker.title);
+		url = 'https://en.wikipedia.org/w/api.php?format=json&action=query&origin=*&prop=extracts&explaintext&exsentences=1&titles=' + encodeURIComponent(marker.title);
 
 		var text;
 		infoWindow.open(map, marker);
@@ -83,7 +82,7 @@ function kickOff(){
 
 	//helper function to extract and clean the required information from wikimedia API response
 	function parseResponse(data){
-		var arr = Object.keys(data.query.pages).map(function(v) {return data.query.pages[v]});
+		var arr = Object.keys(data.query.pages).map(function(v) {return data.query.pages[v];});
 		//the first pattern is for removing brackets and their content
 		//the second pattern is a specific hack for a case where the closing bracket was omitted after a comma
 		//e.g. centre george pompidou's page
