@@ -1,6 +1,13 @@
 // Initialize collapse button from materializecss.com
 $('.button-collapse').sideNav();
 
+
+//callback for map loading error
+function mapError() {
+	document.getElementById('map').innerHTML = '<h5>An error occurred. Map could not be loaded at this time.</h5>';
+}
+
+
 //callback after map is successfully loaded to kick off the app
 function kickOff(){
 
@@ -9,7 +16,7 @@ function kickOff(){
 
 	//set up Map according to Google Maps API
 	function initMap() {
-		var center = {lat: 48.8584, lng: 2.2940}; //48.8566° N, 2.3522° E
+		var center = {lat: 48.8656, lng: 2.3212}; //48.8566° N, 2.3522° E
 	  map = new google.maps.Map(document.getElementById('map'), {
 	    center: center,
 	    zoom: 13,
@@ -17,8 +24,7 @@ function kickOff(){
 	  });
 
 	  //stackoverflow Responsive Google Map?
-		google.maps.event.addDomListener(window, "resize", function() {
-			console.log("resizing");
+		google.maps.event.addDomListener(window, "resize", function() {	
 			var center = map.getCenter();
 			google.maps.event.trigger(map, "resize");
 			map.setCenter(center); 
@@ -126,12 +132,13 @@ function kickOff(){
 				return false; 
 			} 
 		};
+
+		//function to hide sideNav on click in smaller displays
+		self.hideNav = function() {
+			//programmatic control of sideNav component as detailed in materializeCss.com
+			$('.button-collapse').sideNav('hide');
+		};
 	}
 
 	ko.applyBindings(new AppViewModel());
-
-	//hide on clicking places in smaller displays
-	$('.places').click(function(){
-		 $('.button-collapse').sideNav('hide');
-	});
 }

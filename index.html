@@ -30,7 +30,7 @@
           </li>
         </ul>
         <ul data-bind="foreach: places">
-          <li class="places">
+          <li class="places" data-bind="click: $root.hideNav">
             <a data-bind="text: name, visible: $root.doFiltering($data), click: $root.onclick" href="#"></a>
           </li>
         </ul>
@@ -43,7 +43,7 @@
   <script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/materialize.min.js"></script>
   <script src="js/app.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgoReeObYDWp510Dlbp3sgiRR4e1QAPVo&callback=kickOff"
+	<script onerror="mapError()" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgoReeObYDWp510Dlbp3sgiRR4e1QAPVo&callback=kickOff"
     async defer></script>
 </body>
 </html>
